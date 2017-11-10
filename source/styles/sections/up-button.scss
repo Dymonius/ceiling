@@ -1,0 +1,44 @@
+.up_down_btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  background: rgba(245,245,245,0.5);
+  color: black;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 5px solid rgba(254, 203, 58, 0.76);
+  display: none;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.75);
+}
+
+.up_down_btn:hover, .up_down_btn:hover:before {
+  border-color: $color-main;
+}
+
+.up_down_btn:before {
+  position: absolute;
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-left: 5px solid rgba(254, 203, 58, 0.76);
+  border-top: 5px solid rgba(254, 203, 58, 0.76);
+  transform: rotate(45deg);
+  top: 23px;
+  left: 15px;
+
+}
+
+.up_down_btn-show {
+  display: block;
+}
+
+.up_down_btn-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0;
+}
