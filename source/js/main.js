@@ -119,6 +119,18 @@ window.onload = function () {
         window.addEventListener('scroll', trackScroll);
         upDownBtn.addEventListener('click', backToTop);
     })();
+
+//    Menu
+    (function () {
+        var button = document.querySelector('.hamburger');
+        var menu = document.querySelector('.menu');
+
+        button.addEventListener('click', function () {
+            menu.classList.toggle('menu--open');
+            button.classList.toggle('hamburger--closed');
+        })
+
+    })();
 };
 
 

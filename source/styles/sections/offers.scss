@@ -1,0 +1,34 @@
+
+.offers__header {
+  position: relative;
+  font-size: 27px;
+  font-family: $ff-main-bold;
+  text-align: center;
+  border-bottom-width: 3px;
+  border-color: rgb(255, 204, 0);
+  border-style: solid;
+  border-radius: 40px;
+  text-transform: uppercase;
+  display: table;
+  margin: 0 auto;
+  margin-top: -120px;
+  padding: 14px 30px;
+  background-color: #fff;
+
+}
+
+.offers__header:before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 25px 58px 0 58px;
+  border-color: #ffcc00 transparent transparent transparent;
+  @include centerer-x;
+  bottom: -26px;
+}
+
+@media (max-width: 937px) {
+  .offers__header {
+    margin-top: 20px;
+  }
+}
