@@ -1,0 +1,21 @@
+.offers__header--forth {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.photo-gallery .slick-slide {
+  margin-right: 10px;
+}
+
+.photo-gallery .slick-prev {
+  left: 50px;
+  z-index: 1001;
+}
+.photo-gallery .slick-next {
+  right: 90px;
+  z-index: 1001;
+}
+
+.photo-gallery .slick-prev:before, .photo-gallery .slick-next:before {
+  font-size: 50px !important;
+}

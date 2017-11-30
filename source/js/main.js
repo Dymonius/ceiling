@@ -131,7 +131,68 @@ window.onload = function () {
         })
 
     })();
+
+    // Slider Manufacture
+
+    $('.slider-schemes').slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        responsive: [
+            {
+                breakpoint: 937,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            }
+        ]
+    });
+
+    // Photo gallery
+
+    $('.photo-gallery').slick({
+        // arrows: false,
+        centerPadding: '10%',
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1300,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '10%',
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 1000,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '22%',
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 700,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '10%',
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+
+
 };
+
 
 
 
