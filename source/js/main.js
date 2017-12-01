@@ -185,15 +185,215 @@ window.onload = function () {
                     centerMode: true,
                     centerPadding: '10%',
                     slidesToShow: 1
+                },
+                breakpoint: 500,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '10%',
+                    slidesToShow: 1
                 }
             }
         ]
     });
 
+    //comments slider
+    $('.comments__slider').slick({
+        arrows: false,
+        dots: true
+    });
 
+    // navigation
+    (function () {
+        var nav = document.querySelector('.menu');
+
+        var toggleToActiveLink = function (target) {
+            var links = document.querySelectorAll('.menu__items');
+            var showedSection = target.parentNode.dataset.link;
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].classList.contains('menu__items--active')) {
+                    links[i].classList.remove('menu__items--active');
+                }
+            }
+            target.parentNode.classList.add('menu__items--active');
+            scrollToActiveSection(showedSection);
+        };
+
+        function scrollToActiveSection(showedSection) {
+            var section = document.querySelector('.' + showedSection);
+            var coords = section.getBoundingClientRect();
+
+            var timerId = setInterval(function () {
+                if (window.pageYOffset < coords.top - 150) {
+                    window.scrollBy(0, 10);
+                }
+                else {
+                    clearInterval(timerId);
+                }
+            }, 0.5)
+
+        }
+
+        nav.addEventListener('click', function (e) {
+            var target = e.target;
+
+            if (target.tagName.toLowerCase() !== 'a') {
+                return
+            }
+            e.preventDefault();
+            toggleToActiveLink(target);
+        })
+
+    })();
+
+    // $(function () {
+    //
+    //     $('.menu a').on('click', function (e) {
+    //         e.preventDefault();
+    //
+    //         var selector = $(this).attr('class'); /* #about - строка */
+    //         console.log(selector);
+    //         var h = $(selector); /* jquery-элемент заголовка */
+    //
+    //         $('html, body').animate({
+    //             scrollTop: h.offset().top - 70
+    //         }, 400);
+    //
+    //
+    //     });
+    // });
 };
 
+//google map
+function initMap() {
+    var element = document.querySelector('.map');
+    var options = {
+        zoom: 17,
+        center: {lat: 50.450122, lng: 30.524157},
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_BOTTOM
+        },
+        streetViewControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+            {
+                featureType: 'administrative',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#c9b2a6'}]
+            },
+            {
+                featureType: 'administrative.land_parcel',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#dcd2be'}]
+            },
+            {
+                featureType: 'administrative.land_parcel',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#ae9e90'}]
+            },
+            {
+                featureType: 'landscape.natural',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#93817c'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#a5b076'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#447530'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#f5f1e6'}]
+            },
+            {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{color: '#fdfcf8'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#f8c967'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#e9bc62'}]
+            },
+            {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry',
+                stylers: [{color: '#e98d58'}]
+            },
+            {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#db8555'}]
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#806b63'}]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#8f7d77'}]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#ebe3cd'}]
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#b9d3c2'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#92998d'}]
+            }
+        ]
 
+    };
+    var myMap = new google.maps.Map(element, options)
+}
+
+// 50°27'00.4"N 30°31'27.0"E
+// 50.450122, 30.524157
 
 
 

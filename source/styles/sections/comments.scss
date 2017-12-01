@@ -1,0 +1,33 @@
+.offers__header--sixth {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+.comments__slide {
+  min-height: 300px;
+  display: flex !important;
+  align-items: center;
+}
+.comments__img {
+  height: 182px;
+  max-width: 182px;
+  border: 2px solid #FECB39;
+  border-radius: 50%;
+}
+.comments__text {
+  margin: 20px;
+  line-height: 25px;
+}
+.comments__text p {
+  font-size: 22px;
+  line-height: 40px;
+}
+
+@media (max-width: 600px) {
+  .comments__slide {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .comments__text {
+    margin-bottom: 0;
+  }
+}
