@@ -128,6 +128,16 @@ window.onload = function () {
         button.addEventListener('click', function () {
             menu.classList.toggle('menu--open');
             button.classList.toggle('hamburger--closed');
+            if (menu.classList.contains('menu--open')) {
+                var anchors = document.querySelectorAll('.menu__items-link');
+                for (var i = 0; i < anchors.length; i++) {
+                    anchors[i].addEventListener('click', function () {
+                        menu.classList.remove('menu--open');
+                        button.classList.remove('hamburger--closed');
+                    })
+                }
+            }
+
         })
 
     })();
@@ -202,67 +212,18 @@ window.onload = function () {
         arrows: false,
         dots: true
     });
-
-    // navigation
-    (function () {
-        var nav = document.querySelector('.menu');
-
-        var toggleToActiveLink = function (target) {
-            var links = document.querySelectorAll('.menu__items');
-            var showedSection = target.parentNode.dataset.link;
-            for (var i = 0; i < links.length; i++) {
-                if (links[i].classList.contains('menu__items--active')) {
-                    links[i].classList.remove('menu__items--active');
-                }
-            }
-            target.parentNode.classList.add('menu__items--active');
-            scrollToActiveSection(showedSection);
-        };
-
-        function scrollToActiveSection(showedSection) {
-            var section = document.querySelector('.' + showedSection);
-            var coords = section.getBoundingClientRect();
-
-            var timerId = setInterval(function () {
-                if (window.pageYOffset < coords.top - 150) {
-                    window.scrollBy(0, 10);
-                }
-                else {
-                    clearInterval(timerId);
-                }
-            }, 0.5)
-
-        }
-
-        nav.addEventListener('click', function (e) {
-            var target = e.target;
-
-            if (target.tagName.toLowerCase() !== 'a') {
-                return
-            }
-            e.preventDefault();
-            toggleToActiveLink(target);
-        })
-
-    })();
-
-    // $(function () {
-    //
-    //     $('.menu a').on('click', function (e) {
-    //         e.preventDefault();
-    //
-    //         var selector = $(this).attr('class'); /* #about - строка */
-    //         console.log(selector);
-    //         var h = $(selector); /* jquery-элемент заголовка */
-    //
-    //         $('html, body').animate({
-    //             scrollTop: h.offset().top - 70
-    //         }, 400);
-    //
-    //
-    //     });
-    // });
 };
+
+//navigation
+$(function () {
+    $('a[data-target^="anchor"]').bind('click.smoothscroll', function () {
+        var target = $(this).attr('href'),
+            bl_top = $(target).offset().top;
+        $('body, html').animate({scrollTop: bl_top - 85}, 700)
+
+    })
+});
+
 
 //google map
 function initMap() {
@@ -389,7 +350,16 @@ function initMap() {
         ]
 
     };
-    var myMap = new google.maps.Map(element, options)
+
+    var myMap = new google.maps.Map(element, options);
+    var marker = new google.maps.Marker({
+        position: {lat: 50.450122, lng: 30.524157},
+        map: myMap
+    });
+    var InfoWindow = new google.maps.InfoWindow({
+        content: '<div class="marker">Отличные потолки</div>'
+    });
+    InfoWindow.open(myMap, marker)
 }
 
 // 50°27'00.4"N 30°31'27.0"E
